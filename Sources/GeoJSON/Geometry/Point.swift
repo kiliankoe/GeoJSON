@@ -5,6 +5,10 @@ public struct Point: Equatable, Codable {
         self.coordinates = coordinates
     }
 
+    public init(longitude: Double, latitude: Double) {
+        self.coordinates = Position(longitude: longitude, latitude: latitude)
+    }
+
     public init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
         self.coordinates = try container.decode(Position.self)
