@@ -1,5 +1,5 @@
 public struct MultiPoint: Equatable, Codable {
-    public let coordinates: [Position]
+    public var coordinates: [Position]
 
     public init(coordinates: [Position]) {
         self.coordinates = coordinates

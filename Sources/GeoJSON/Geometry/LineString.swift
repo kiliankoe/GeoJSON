@@ -1,5 +1,5 @@
 public struct LineString: Equatable, Codable {
-    public let coordinates: [Position]
+    public var coordinates: [Position]
 
     public enum Error: Swift.Error {
         /// A LineString consists of two or more positions.

@@ -1,6 +1,6 @@
 public struct Position: Equatable, Codable {
-    public let longitude: Double
-    public let latitude: Double
+    public var longitude: Double
+    public var latitude: Double
 
     public enum Error: Swift.Error {
         case unexpectedValueCount

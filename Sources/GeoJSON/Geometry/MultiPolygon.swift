@@ -1,5 +1,5 @@
 public struct MultiPolygon: Equatable, Codable {
-    public let coordinates: [Polygon]
+    public var coordinates: [Polygon]
 
     public init(coordinates: [Polygon]) {
         self.coordinates = coordinates

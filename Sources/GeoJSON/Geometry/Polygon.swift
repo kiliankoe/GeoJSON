@@ -1,5 +1,5 @@
 public struct Polygon: Equatable, Codable {
-    public let coordinates: [LinearRing]
+    public var coordinates: [LinearRing]
 
     public init(coordinates: [LinearRing]) {
         self.coordinates = coordinates

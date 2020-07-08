@@ -1,5 +1,5 @@
 public struct MultiLineString: Equatable, Codable {
-    public let coordinates: [LineString]
+    public var coordinates: [LineString]
 
     public init(coordinates: [LineString]) {
         self.coordinates = coordinates
