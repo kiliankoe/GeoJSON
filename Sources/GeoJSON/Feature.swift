@@ -3,7 +3,7 @@ import AnyCodable
 public struct Feature: Equatable, Codable {
     let type = "Feature"
     public var geometry: Geometry?
-    public var properties: [String: AnyCodable]?
+    public var properties: Properties?
 
     // This is defined explicitly to silence the warning about `type` having a static value above.
     private enum CodingKeys: CodingKey {
@@ -14,7 +14,7 @@ public struct Feature: Equatable, Codable {
 
     public init(geometry: Geometry?, properties: [String: AnyCodable]? = nil) {
         self.geometry = geometry
-        self.properties = properties
+        self.properties = properties.flatMap { Properties(data: $0) }
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -29,6 +29,36 @@ public struct Feature: Equatable, Codable {
             try container.encode(properties, forKey: .properties)
         } else {
             try container.encodeNil(forKey: .properties)
+        }
+    }
+}
+
+extension Feature {
+    @dynamicMemberLookup
+    public struct Properties: Equatable, Codable {
+        public let data: [String: AnyCodable]
+
+        public subscript<T>(dynamicMember member: String) -> T? {
+            guard let value = data[member] else { return nil }
+            return value.value as? T
+        }
+
+        public subscript(key: String) -> AnyCodable? {
+            data[key]
+        }
+
+        init(data: [String: AnyCodable]) {
+            self.data = data
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            data = try container.decode([String: AnyCodable].self)
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            try container.encode(data)
         }
     }
 }

@@ -19,5 +19,6 @@ final class DecodingTests: XCTestCase {
         let geoJson = try JSONDecoder().decode(Feature.self, from: json)
         XCTAssertEqual(geoJson.geometry, .point(Point(longitude: 125.6, latitude: 10.1)))
         XCTAssertEqual(geoJson.properties?["name"], "Dinagat Islands")
+        XCTAssertEqual(geoJson.properties?.name, "Dinagat Islands")
     }
 }
