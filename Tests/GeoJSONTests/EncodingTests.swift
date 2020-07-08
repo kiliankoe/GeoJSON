@@ -55,6 +55,83 @@ final class EncodingTests: XCTestCase {
         ])
         XCTAssertEqual(try jsonRepr(mp, pretty: false), "[[[[1,1],[2,2],[3,3],[1,1]]]]")
     }
+
+    func testEncodeGeometry() throws {
+        let geoPoint = Geometry.point(Point(coordinates: Position(longitude: 1.0, latitude: 1.0)))
+        XCTAssertEqual(try jsonRepr(geoPoint), """
+        {
+          "coordinates" : [
+            1,
+            1
+          ],
+          "type" : "Point"
+        }
+        """)
+    }
+
+    func testEncodeFeature() throws {
+        let featurePoint = Feature(
+            geometry: .point(Point(coordinates: Position(longitude: 1.0, latitude: 1.0))),
+            properties: ["SomeProperty": "SomeValue"]
+        )
+        XCTAssertEqual(try jsonRepr(featurePoint), """
+        {
+          "geometry" : {
+            "coordinates" : [
+              1,
+              1
+            ],
+            "type" : "Point"
+          },
+          "properties" : {
+            "SomeProperty" : "SomeValue"
+          },
+          "type" : "Feature"
+        }
+        """)
+    }
+
+    func testEncodeFeatureCollection() throws {
+        let doc = Document(features: [
+            Feature(geometry: .point(Point(coordinates: Position(longitude: 1.0, latitude: 1.0)))),
+            Feature(geometry: .multiPoint(MultiPoint(coordinates: [Position(longitude: 1.0, latitude: 1.0)])), properties: ["someProperty": 1])
+        ])
+        XCTAssertEqual(try jsonRepr(doc), """
+        {
+          "features" : [
+            {
+              "geometry" : {
+                "coordinates" : [
+                  1,
+                  1
+                ],
+                "type" : "Point"
+              },
+              "properties" : {
+
+              },
+              "type" : "Feature"
+            },
+            {
+              "geometry" : {
+                "coordinates" : [
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                "type" : "MultiPoint"
+              },
+              "properties" : {
+                "someProperty" : 1
+              },
+              "type" : "Feature"
+            }
+          ],
+          "type" : "FeatureCollection"
+        }
+        """)
+    }
 }
 
 extension EncodingTests {
