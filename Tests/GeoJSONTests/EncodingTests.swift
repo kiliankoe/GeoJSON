@@ -130,6 +130,38 @@ final class EncodingTests: XCTestCase {
         }
         """)
     }
+
+    func testEncodeReadmeExample() throws {
+        let document = Document(features: [
+            Feature(
+                geometry: .point(Point(longitude: 125.6, latitude: 10.1)),
+                properties: [
+                    "name": "Dinagat Island"
+                ]
+            )
+        ])
+
+        XCTAssertEqual(try jsonRepr(document), """
+        {
+          "features" : [
+            {
+              "geometry" : {
+                "coordinates" : [
+                  125.59999999999999,
+                  10.1
+                ],
+                "type" : "Point"
+              },
+              "properties" : {
+                "name" : "Dinagat Island"
+              },
+              "type" : "Feature"
+            }
+          ],
+          "type" : "FeatureCollection"
+        }
+        """)
+    }
 }
 
 extension EncodingTests {
