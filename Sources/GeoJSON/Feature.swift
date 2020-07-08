@@ -43,8 +43,9 @@ extension Feature {
             return value.value as? T
         }
 
-        public subscript(key: String) -> AnyCodable? {
-            data[key]
+        public subscript<T>(key: String) -> T? {
+            guard let value = data[key] else { return nil }
+            return value.value as? T
         }
 
         init(data: [String: AnyCodable]) {
