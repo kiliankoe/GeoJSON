@@ -107,9 +107,7 @@ final class EncodingTests: XCTestCase {
                 ],
                 "type" : "Point"
               },
-              "properties" : {
-
-              },
+              "properties" : null,
               "type" : "Feature"
             },
             {
