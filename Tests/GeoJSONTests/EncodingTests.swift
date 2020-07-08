@@ -1,5 +1,5 @@
 import XCTest
-@testable import GeoJSON
+import GeoJSON
 
 final class EncodingTests: XCTestCase {
     func testPointEncoding() throws {
