@@ -13,12 +13,11 @@ public struct Position: Equatable, Codable {
 
     public init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
-        let values = try container.decode([Double].self)
-        guard values.count == 2 else {
+        guard container.count == 2 else {
             throw Error.unexpectedValueCount
         }
-        self.longitude = values[0]
-        self.latitude = values[1]
+        self.longitude = try container.decode(Double.self)
+        self.latitude = try container.decode(Double.self)
     }
 
     public func encode(to encoder: Encoder) throws {

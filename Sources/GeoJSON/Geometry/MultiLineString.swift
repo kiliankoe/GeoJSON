@@ -6,7 +6,7 @@ public struct MultiLineString: Equatable, Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        var container = try decoder.unkeyedContainer()
+        let container = try decoder.singleValueContainer()
         self.coordinates = try container.decode([LineString].self)
     }
 
