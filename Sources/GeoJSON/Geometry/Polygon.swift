@@ -1,4 +1,4 @@
-public struct Polygon: Codable {
+public struct Polygon: Equatable, Codable {
     public let coordinates: [LinearRing]
 
     public init(coordinates: [LinearRing]) {
@@ -21,7 +21,7 @@ public struct Polygon: Codable {
 }
 
 extension Polygon {
-    public struct LinearRing: Codable {
+    public struct LinearRing: Equatable, Codable {
         public let coordinates: [Position]
 
         public enum Error: Swift.Error {

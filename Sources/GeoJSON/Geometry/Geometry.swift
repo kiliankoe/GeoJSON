@@ -1,4 +1,4 @@
-public enum Geometry: Codable {
+public enum Geometry: Equatable, Codable {
     case point(Point)
     case multiPoint(MultiPoint)
     case lineString(LineString)

@@ -1,4 +1,4 @@
-public struct MultiPolygon: Codable {
+public struct MultiPolygon: Equatable, Codable {
     public let coordinates: [Polygon]
 
     public init(coordinates: [Polygon]) {

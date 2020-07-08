@@ -1,4 +1,4 @@
-public struct MultiPoint: Codable {
+public struct MultiPoint: Equatable, Codable {
     public let coordinates: [Position]
 
     public init(coordinates: [Position]) {

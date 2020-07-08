@@ -1,4 +1,4 @@
-public struct LineString: Codable {
+public struct LineString: Equatable, Codable {
     public let coordinates: [Position]
 
     public enum Error: Swift.Error {

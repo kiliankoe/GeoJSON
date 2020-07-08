@@ -1,4 +1,4 @@
-public struct MultiLineString: Codable {
+public struct MultiLineString: Equatable, Codable {
     public let coordinates: [LineString]
 
     public init(coordinates: [LineString]) {
