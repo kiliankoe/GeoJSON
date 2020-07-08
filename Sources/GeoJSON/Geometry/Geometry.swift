@@ -1,5 +1,3 @@
-import Foundation
-
 public enum Geometry: Codable {
     case point(Point)
     case multiPoint(MultiPoint)
