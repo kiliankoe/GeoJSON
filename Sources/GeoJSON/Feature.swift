@@ -5,6 +5,13 @@ public struct Feature: Equatable, Codable {
     public var geometry: Geometry?
     public var properties: [String: AnyCodable]?
 
+    // This is defined explicitly to silence the warning about `type` having a static value above.
+    private enum CodingKeys: CodingKey {
+        case type
+        case geometry
+        case properties
+    }
+
     public init(geometry: Geometry?, properties: [String: AnyCodable]? = nil) {
         self.geometry = geometry
         self.properties = properties
