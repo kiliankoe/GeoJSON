@@ -24,6 +24,17 @@ final class EncodingTests: XCTestCase {
         """)
     }
 
+    func testEncodeEmptyFeature() throws {
+        let feature = Feature(geometry: nil)
+        XCTAssertEqual(try jsonRepr(feature, pretty: true), """
+        {
+          "geometry" : null,
+          "properties" : null,
+          "type" : "Feature"
+        }
+        """)
+    }
+
     func testEncodeFeatureCollection() throws {
         let featureCollection = FeatureCollection(features: [
             Feature(geometry: .point(Point(coordinates: Position(longitude: 1.0, latitude: 1.0)))),
