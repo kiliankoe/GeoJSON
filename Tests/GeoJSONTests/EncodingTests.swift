@@ -3,8 +3,11 @@ import GeoJSON
 
 final class EncodingTests: XCTestCase {
     func testPointEncoding() throws {
-        let p = Point(coordinates: Position(longitude: 1.0, latitude: 1.0))
-        XCTAssertEqual(try jsonRepr(p, pretty: false), "[1,1]")
+        let p1 = Point(coordinates: Position(longitude: 1.0, latitude: 1.0))
+        XCTAssertEqual(try jsonRepr(p1, pretty: false), "[1,1]")
+
+        let p2 = Point(longitude: 2.0, latitude: 2.0, altitude: 2.0)
+        XCTAssertEqual(try jsonRepr(p2, pretty: false), "[2,2,2]")
     }
 
     func testMultiPointEncoding() throws {

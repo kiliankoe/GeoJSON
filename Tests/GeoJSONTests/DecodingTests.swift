@@ -2,6 +2,19 @@ import XCTest
 import GeoJSON
 
 final class DecodingTests: XCTestCase {
+    func testDecodePositions() throws {
+        let p1 = try JSONDecoder().decode(Position.self, from: "[1,1]".data(using: .utf8)!)
+        XCTAssertEqual(p1.longitude, 1.0)
+        XCTAssertEqual(p1.latitude, 1.0)
+        XCTAssertNil(p1.altitude)
+
+        let p2 = try JSONDecoder().decode(Position.self, from: "[10.1,105.5,-20]".data(using: .utf8)!)
+        XCTAssertEqual(p2.longitude, 10.1)
+        XCTAssertEqual(p2.latitude, 105.5)
+        XCTAssertEqual(p2.altitude, -20)
+        XCTAssertEqual(p2.altitudeMeasurement, Measurement<UnitLength>(value: -20, unit: .meters))
+    }
+
     func testDecodeHomepageExample() throws {
         let json = """
         {
