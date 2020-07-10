@@ -6,8 +6,8 @@ public struct Point: Equatable, Codable {
         self.coordinates = coordinates
     }
 
-    public init(longitude: Double, latitude: Double) {
-        self.coordinates = Position(longitude: longitude, latitude: latitude)
+    public init(longitude: Double, latitude: Double, altitude: Double? = nil) {
+        self.coordinates = Position(longitude: longitude, latitude: latitude, altitude: altitude)
     }
 
     public init(from decoder: Decoder) throws {
