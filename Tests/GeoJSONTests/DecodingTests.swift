@@ -15,6 +15,36 @@ final class DecodingTests: XCTestCase {
         XCTAssertEqual(p2.altitudeMeasurement, Measurement<UnitLength>(value: -20, unit: .meters))
     }
 
+    func testDecodeGeometryCollection() throws {
+        let json = """
+        {
+          "type" : "GeometryCollection",
+          "geometries" : [
+            {
+              "coordinates" : [
+                1,
+                1
+              ],
+              "type" : "Point"
+            },
+            {
+              "coordinates" : [
+                [
+                  2,
+                  2
+                ]
+              ],
+              "type" : "MultiPoint"
+            }
+          ]
+        }
+        """.data(using: .utf8)!
+
+        let geoCollection = try JSONDecoder().decode(Geometry.self, from: json)
+        guard case let .geometryCollection(geoCol) = geoCollection else { XCTFail(); return }
+        XCTAssertEqual(geoCol.count, 2)
+    }
+
     func testDecodeHomepageExample() throws {
         let json = """
         {

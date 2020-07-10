@@ -72,6 +72,36 @@ final class EncodingTests: XCTestCase {
         """)
     }
 
+    func testEncodeGeometryCollection() throws {
+        let geoCollection = Geometry.geometryCollection([
+            .point(Point(longitude: 1.0, latitude: 1.0)),
+            .multiPoint(MultiPoint(coordinates: [Position(longitude: 2.0, latitude: 2.0)]))
+        ])
+        XCTAssertEqual(try jsonRepr(geoCollection), """
+        {
+          "geometries" : [
+            {
+              "coordinates" : [
+                1,
+                1
+              ],
+              "type" : "Point"
+            },
+            {
+              "coordinates" : [
+                [
+                  2,
+                  2
+                ]
+              ],
+              "type" : "MultiPoint"
+            }
+          ],
+          "type" : "GeometryCollection"
+        }
+        """)
+    }
+
     func testEncodeFeature() throws {
         let featurePoint = Feature(
             geometry: .point(Point(coordinates: Position(longitude: 1.0, latitude: 1.0))),
