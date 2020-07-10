@@ -16,10 +16,48 @@ final class DecodingTests: XCTestCase {
         }
         """.data(using: .utf8)!
 
-        let geoJson = try JSONDecoder().decode(Feature.self, from: json)
-        XCTAssertEqual(geoJson.geometry, .point(Point(longitude: 125.6, latitude: 10.1)))
-        XCTAssertEqual(geoJson.properties?["name"], "Dinagat Islands")
-        XCTAssertEqual(geoJson.properties?.name, "Dinagat Islands")
+        let feature = try JSONDecoder().decode(Feature.self, from: json)
+        XCTAssertEqual(feature.geometry, .point(Point(longitude: 125.6, latitude: 10.1)))
+        XCTAssertEqual(feature.properties?["name"], "Dinagat Islands")
+        XCTAssertEqual(feature.properties?.name, "Dinagat Islands")
+    }
+
+    func testDecodeFeatureWithId() throws {
+        let json = """
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [125.6, 10.1]
+          },
+          "properties": {
+            "name": "Dinagat Islands"
+          },
+          "id": "DinagatIslands"
+        }
+        """.data(using: .utf8)!
+
+        let feature = try JSONDecoder().decode(Feature.self, from: json)
+        XCTAssertEqual(feature.id, "DinagatIslands")
+    }
+
+    func testDecodeFeatureWithNumberId() throws {
+        let json = """
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [125.6, 10.1]
+          },
+          "properties": {
+            "name": "Dinagat Islands"
+          },
+          "id": 100
+        }
+        """.data(using: .utf8)!
+
+        let feature = try JSONDecoder().decode(Feature.self, from: json)
+        XCTAssertEqual(feature.id, "100.0")
     }
 
     func testDecodeSpecExample1() throws {
