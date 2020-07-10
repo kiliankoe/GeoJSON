@@ -4,6 +4,8 @@ This is a Swift package for working with [GeoJSON](https://geojson.org) data. It
 
 ## Usage
 
+You can give this package a quick spin by cloning the repository and running `swift run --repl` inside it.
+
 ### Encoding
 
 Create a `FeatureCollection` or just a single `Feature` to create some GeoJSON data. 
