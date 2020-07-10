@@ -1,3 +1,4 @@
+/// A string of two or more `Position`s.
 public struct LineString: Equatable, Codable {
     public var coordinates: [Position]
 

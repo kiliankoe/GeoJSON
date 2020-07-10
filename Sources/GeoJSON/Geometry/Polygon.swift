@@ -1,3 +1,5 @@
+/// A collection of `LinearRing`s. The first ring is expected to be the exterior ring, any others are interior rings. The exterior ring bounds the surface, and the
+/// interior rings (if present) bound holes within the surface.
 public struct Polygon: Equatable, Codable {
     public var coordinates: [LinearRing]
 
@@ -21,6 +23,9 @@ public struct Polygon: Equatable, Codable {
 }
 
 extension Polygon {
+    /// A closed `LineString` containing four or more `Position`s. The first and last value are expected to be the same so that the ring is closed. A linear
+    /// ring is the boundary of a surface or the boundary of a hole in a surface and must follow the right-hand rule with respect to the area it bounds, i.e. exterior
+    /// rings are counterclockwise, and holes are clockwise.
     public struct LinearRing: Equatable, Codable {
         public let coordinates: [Position]
 

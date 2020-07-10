@@ -1,3 +1,4 @@
+/// A collection of `LineString`s, each containing two or more `Position`s.
 public struct MultiLineString: Equatable, Codable {
     public var coordinates: [LineString]
 
