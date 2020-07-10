@@ -92,7 +92,7 @@ final class EncodingTests: XCTestCase {
     }
 
     func testEncodeFeatureCollection() throws {
-        let doc = Document(features: [
+        let doc = FeatureCollection(features: [
             Feature(geometry: .point(Point(coordinates: Position(longitude: 1.0, latitude: 1.0)))),
             Feature(geometry: .multiPoint(MultiPoint(coordinates: [Position(longitude: 1.0, latitude: 1.0)])), properties: ["someProperty": 1])
         ])
@@ -132,7 +132,7 @@ final class EncodingTests: XCTestCase {
     }
 
     func testEncodeReadmeExample() throws {
-        let document = Document(features: [
+        let document = FeatureCollection(features: [
             Feature(
                 geometry: .point(Point(longitude: 125.6, latitude: 10.1)),
                 properties: [

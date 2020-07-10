@@ -6,10 +6,10 @@ This is a Swift package for working with [GeoJSON](https://geojson.org) data. It
 
 ### Encoding
 
-Create a `Document` (alias of `FeatureCollection`) or just a single `Feature` to create a GeoJSON file. 
+Create a `FeatureCollection` or just a single `Feature` to create some GeoJSON data. 
 
 ```swift
-let document = Document(features: [
+let features = FeatureCollection(features: [
     Feature(
         geometry: .point(Point(longitude: 125.6, latitude: 10.1)),
         properties: [
@@ -18,7 +18,7 @@ let document = Document(features: [
     )
 ])
 
-let json = try JSONEncoder().encode(document)
+let json = try JSONEncoder().encode(features)
 ```
 
 ### Decoding
@@ -26,7 +26,7 @@ let json = try JSONEncoder().encode(document)
 It works the same way in the other direction. Use a standard `JSONDecoder` to decode GeoJSON data into a fitting type.
 
 ```swift
-let document = try JSONDecoder().decode(Document.self, from: json)
+let features = try JSONDecoder().decode(FeatureCollection.self, from: json)
 ```
 
 ## Installation

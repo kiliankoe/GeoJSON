@@ -12,5 +12,3 @@ public struct FeatureCollection: Equatable, Codable {
         self.features = features
     }
 }
-
-public typealias Document = FeatureCollection
