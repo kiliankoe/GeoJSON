@@ -9,23 +9,29 @@ public struct Feature: Equatable, Codable {
     ///            `String`s if present.
     public var id: String?
     public var properties: Properties?
+    public var boundingBox: BoundingBox?
 
     // This is defined explicitly to silence the warning about `type` having a static value above.
-    private enum CodingKeys: CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case type
         case geometry
         case id
         case properties
+        case boundingBox = "bbox"
     }
 
     /// - Parameters:
     ///   - geometry: A `Geometry` object or `nil` if the `Feature` is unlocated.
     ///   - id: If a `Feature` has a commonly used identifier, this should be included.
     ///   - properties: Any additional properties that should be included with the `Feature`.
-    public init(geometry: Geometry?, id: String? = nil, properties: [String: AnyCodable]? = nil) {
+    public init(geometry: Geometry?,
+                id: String? = nil,
+                properties: [String: AnyCodable]? = nil,
+                boundingBox: BoundingBox? = nil) {
         self.geometry = geometry
         self.id = id
         self.properties = properties.flatMap { Properties(data: $0) }
+        self.boundingBox = boundingBox
     }
 
     public init(from decoder: Decoder) throws {
@@ -38,6 +44,7 @@ public struct Feature: Equatable, Codable {
         }
         let properties = try container.decodeIfPresent([String: AnyCodable].self, forKey: .properties)
         self.properties = properties.flatMap { Properties(data: $0) }
+        self.boundingBox = try container.decodeIfPresent(BoundingBox.self, forKey: .boundingBox)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -48,14 +55,13 @@ public struct Feature: Equatable, Codable {
         } else {
             try container.encodeNil(forKey: .geometry)
         }
-        if let id = id {
-            try container.encode(id, forKey: .id)
-        }
+        try container.encodeIfPresent(id, forKey: .id)
         if let properties = properties {
             try container.encode(properties, forKey: .properties)
         } else {
             try container.encodeNil(forKey: .properties)
         }
+        try container.encodeIfPresent(boundingBox, forKey: .boundingBox)
     }
 }
 

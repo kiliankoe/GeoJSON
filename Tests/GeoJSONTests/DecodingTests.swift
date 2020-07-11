@@ -2,6 +2,27 @@ import XCTest
 import GeoJSON
 
 final class DecodingTests: XCTestCase {
+    func testDecodeBoundingBox() throws {
+        let bbox4Json = "[-10.0, -10.0, 10.0, 10.0]".data(using: .utf8)!
+        let bbox4 = try JSONDecoder().decode(BoundingBox.self, from: bbox4Json)
+        XCTAssertEqual(bbox4.southWesterly.longitude, -10.0)
+        XCTAssertEqual(bbox4.southWesterly.latitude, -10.0)
+        XCTAssertEqual(bbox4.northEasterly.longitude, 10.0)
+        XCTAssertEqual(bbox4.northEasterly.latitude, 10.0)
+
+        let bbox6Json = "[100.0, 0.0, -100.0, 105.0, 1.0, 0.0]".data(using: .utf8)!
+        let bbox6 = try JSONDecoder().decode(BoundingBox.self, from: bbox6Json)
+        XCTAssertEqual(bbox6.southWesterly.longitude, 100.0)
+        XCTAssertEqual(bbox6.southWesterly.latitude, 0.0)
+        XCTAssertEqual(bbox6.southWesterly.altitude, -100.0)
+        XCTAssertEqual(bbox6.northEasterly.longitude, 105.0)
+        XCTAssertEqual(bbox6.northEasterly.latitude, 1.0)
+        XCTAssertEqual(bbox6.northEasterly.altitude, 0.0)
+
+        let illegalBbox = "[10.0, 10.0, 10.0]".data(using: .utf8)!
+        XCTAssertThrowsError(try JSONDecoder().decode(BoundingBox.self, from: illegalBbox))
+    }
+
     func testDecodeHomepageExample() throws {
         let json = """
         {
@@ -23,7 +44,7 @@ final class DecodingTests: XCTestCase {
     }
 
     func testDecodeFeatureWithId() throws {
-        let json = """
+        let featureWithIdJson = """
         {
           "type": "Feature",
           "geometry": {
@@ -37,12 +58,10 @@ final class DecodingTests: XCTestCase {
         }
         """.data(using: .utf8)!
 
-        let feature = try JSONDecoder().decode(Feature.self, from: json)
-        XCTAssertEqual(feature.id, "DinagatIslands")
-    }
+        let featureWithId = try JSONDecoder().decode(Feature.self, from: featureWithIdJson)
+        XCTAssertEqual(featureWithId.id, "DinagatIslands")
 
-    func testDecodeFeatureWithNumberId() throws {
-        let json = """
+        let featureWithNumberIdJson = """
         {
           "type": "Feature",
           "geometry": {
@@ -56,8 +75,31 @@ final class DecodingTests: XCTestCase {
         }
         """.data(using: .utf8)!
 
+        let featureWithNumberId = try JSONDecoder().decode(Feature.self, from: featureWithNumberIdJson)
+        XCTAssertEqual(featureWithNumberId.id, "100.0")
+    }
+
+    func testDecodeFeatureWithBoundingBox() throws {
+        let json = """
+        {
+               "type": "Feature",
+               "bbox": [-10.0, -10.0, 10.0, 10.0],
+               "geometry": {
+                   "type": "Polygon",
+                   "coordinates": [
+                       [
+                           [-10.0, -10.0],
+                           [10.0, -10.0],
+                           [10.0, 10.0],
+                           [-10.0, -10.0]
+                       ]
+                   ]
+               }
+           }
+        """.data(using: .utf8)!
+
         let feature = try JSONDecoder().decode(Feature.self, from: json)
-        XCTAssertEqual(feature.id, "100.0")
+        XCTAssertNotNil(feature.boundingBox)
     }
 
     func testDecodeSpecExample1() throws {

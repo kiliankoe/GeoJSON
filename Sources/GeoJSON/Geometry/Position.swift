@@ -9,7 +9,7 @@ public struct Position: Equatable, Codable {
     public var altitude: Double?
 
     public enum Error: Swift.Error {
-        /// A position is expected to contain exactly two or three values.
+        /// A `Position` is expected to contain exactly two or three values.
         case unexpectedValueCount
     }
 
