@@ -1,4 +1,4 @@
-# GeoJSON
+# 🌍 GeoJSON
 
 This is a Swift package for working with [GeoJSON](https://geojson.org) data. It contains necessary types conforming to `Codable` for easy de-/encoding of data.
 
