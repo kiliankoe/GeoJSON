@@ -42,9 +42,9 @@ If you don't know if the data to decode is a `Feature` or `FeatureCollection`, d
 ```swift
 let document = try JSONDecoder().decode(Document.self, from: json)
 switch document {
-    case .feature(let feature):
+case .feature(let feature):
     // ...
-    case .featureCollection(let featureCollection):
+case .featureCollection(let featureCollection):
     // ...
 }
 ```
