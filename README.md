@@ -1,5 +1,9 @@
 # 🌍 GeoJSON
 
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fkiliankoe%2FGeoJSON%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/kiliankoe/GeoJSON)
+
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fkiliankoe%2FGeoJSON%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/kiliankoe/GeoJSON)
+
 This is a Swift package for working with [GeoJSON](https://geojson.org) data. It contains necessary types conforming to `Codable` for easy de-/encoding of data.
 
 The implementation of this package tries to follow the specification defined in [RFC 7946](https://tools.ietf.org/html/rfc7946) as closely as possible. One exception are [Foreign Members](https://tools.ietf.org/html/rfc7946#section-6.1), which - according to the spec - MAY be implemented, but are not supported at all by this package.
