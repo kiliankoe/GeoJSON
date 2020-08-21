@@ -1,5 +1,5 @@
-/// Information on the coordinate range for other GeoJSON objects. Contains two `Position`s which denote the most southwesterly and most northeasterly points
-/// of the object's geometry.
+/// Information on the coordinate range for other GeoJSON objects. Contains two `Position`s which denote the most southwesterly and most northeasterly
+/// points of the object's geometry.
 /// See [RFC9746 Section 5](https://tools.ietf.org/html/rfc7946#section-5) for more information.
 public struct BoundingBox: Equatable, Codable {
     public var southWesterly: Position
