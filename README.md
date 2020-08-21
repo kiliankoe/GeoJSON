@@ -37,6 +37,18 @@ It works the same way in the other direction. Use a standard `JSONDecoder` to de
 let features = try JSONDecoder().decode(FeatureCollection.self, from: json)
 ```
 
+If you don't know if the data to decode is a `Feature` or `FeatureCollection`, decode a value of type `Document`, which handles both.
+
+```swift
+let document = try JSONDecoder().decode(Document.self, from: json)
+switch document {
+    case .feature(let feature):
+    // ...
+    case .featureCollection(let featureCollection):
+    // ...
+}
+```
+
 ## Installation
 
 This package is available via Swift Package Manager, add its clone URL to your project to get started.

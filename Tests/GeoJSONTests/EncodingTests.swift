@@ -133,4 +133,24 @@ final class EncodingTests: XCTestCase {
         }
         """)
     }
+
+    func testEncodeDocumentFeature() throws {
+        let feature = Feature(geometry: .point(.init(longitude: 1.0, latitude: 1.0)))
+        let docFeature = Document.feature(feature)
+
+        let encodedFeature = try JSONEncoder().encode(feature)
+        let encodedDoc = try JSONEncoder().encode(docFeature)
+
+        XCTAssertEqual(encodedFeature, encodedDoc)
+    }
+
+    func testEncodeDocumentFeatureCollection() throws {
+        let featureCollection = FeatureCollection(features: [Feature(geometry: .point(.init(longitude: 1.0, latitude: 1.0)))])
+        let docFeatureCollection = Document.featureCollection(featureCollection)
+
+        let encodedFeatureCollection = try JSONEncoder().encode(featureCollection)
+        let encodedDoc = try JSONEncoder().encode(docFeatureCollection)
+
+        XCTAssertEqual(encodedFeatureCollection, encodedDoc)
+    }
 }

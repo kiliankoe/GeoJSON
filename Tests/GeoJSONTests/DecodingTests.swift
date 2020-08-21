@@ -41,6 +41,13 @@ final class DecodingTests: XCTestCase {
         XCTAssertEqual(feature.geometry, .point(Point(longitude: 125.6, latitude: 10.1)))
         XCTAssertEqual(feature.properties?["name"], "Dinagat Islands")
         XCTAssertEqual(feature.properties?.name, "Dinagat Islands")
+
+        let document = try JSONDecoder().decode(Document.self, from: json)
+        guard case .feature(let docFeature) = document else {
+            XCTFail()
+            return
+        }
+        XCTAssertEqual(docFeature, feature)
     }
 
     func testDecodeFeatureWithId() throws {
@@ -167,5 +174,13 @@ final class DecodingTests: XCTestCase {
         guard case let .polygon(p) = geoJson.features[2].geometry else { XCTFail(); return }
         XCTAssertEqual(p.coordinates[0].coordinates.count, 5)
         XCTAssertEqual(geoJson.features[2].properties?.prop1, ["this": "that"])
+
+        let document = try JSONDecoder().decode(Document.self, from: json)
+        guard case .featureCollection(let docFeatureCollection) = document else {
+            XCTFail()
+            return
+        }
+        // No need to validate the contents, which will likely fail due to dictionary ordering.
+        XCTAssertEqual(docFeatureCollection.features.count, geoJson.features.count)
     }
 }
