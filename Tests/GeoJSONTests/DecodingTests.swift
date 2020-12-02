@@ -42,7 +42,7 @@ final class DecodingTests: XCTestCase {
         XCTAssertEqual(feature.properties?["name"], "Dinagat Islands")
         XCTAssertEqual(feature.properties?.name, "Dinagat Islands")
 
-        let document = try JSONDecoder().decode(Document.self, from: json)
+        let document = try JSONDecoder().decode(GeoJSONDocument.self, from: json)
         guard case .feature(let docFeature) = document else {
             XCTFail()
             return
@@ -175,7 +175,7 @@ final class DecodingTests: XCTestCase {
         XCTAssertEqual(p.coordinates[0].coordinates.count, 5)
         XCTAssertEqual(geoJson.features[2].properties?.prop1, ["this": "that"])
 
-        let document = try JSONDecoder().decode(Document.self, from: json)
+        let document = try JSONDecoder().decode(GeoJSONDocument.self, from: json)
         guard case .featureCollection(let docFeatureCollection) = document else {
             XCTFail()
             return

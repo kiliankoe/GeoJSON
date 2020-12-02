@@ -37,10 +37,11 @@ It works the same way in the other direction. Use a standard `JSONDecoder` to de
 let features = try JSONDecoder().decode(FeatureCollection.self, from: json)
 ```
 
-If you don't know if the data to decode is a `Feature` or `FeatureCollection`, decode a value of type `Document`, which handles both.
+If you don't know if the data to decode is a `Feature` or `FeatureCollection`, decode a value of type `GeoJSONDocument`, which handles 
+both.
 
 ```swift
-let document = try JSONDecoder().decode(Document.self, from: json)
+let document = try JSONDecoder().decode(GeoJSONDocument.self, from: json)
 switch document {
 case .feature(let feature):
     // ...
