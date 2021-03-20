@@ -1,7 +1,6 @@
 # 🌍 GeoJSON
 
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fkiliankoe%2FGeoJSON%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/kiliankoe/GeoJSON)
-
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fkiliankoe%2FGeoJSON%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/kiliankoe/GeoJSON)
 
 This is a Swift package for working with [GeoJSON](https://geojson.org) data. It contains necessary types conforming to `Codable` for easy de-/encoding of data.
