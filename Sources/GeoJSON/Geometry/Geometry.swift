@@ -63,7 +63,7 @@ public enum Geometry: Equatable, Codable {
             try container.encode("LineString", forKey: .type)
             try container.encode(lineString, forKey: .coordinates)
         case .multiLineString(let multiLineString):
-            try container.encode("MutliLineString", forKey: .type)
+            try container.encode("MultiLineString", forKey: .type)
             try container.encode(multiLineString, forKey: .coordinates)
         case .polygon(let polygon):
             try container.encode("Polygon", forKey: .type)
