@@ -29,7 +29,7 @@ final class DecodingTests: XCTestCase {
           "type": "Feature",
           "geometry": {
             "type": "Point",
-            "coordinates": [125.6, 10.1]
+            "coordinates": [125.6, 10.1, 0, 0]
           },
           "properties": {
             "name": "Dinagat Islands"
@@ -38,7 +38,7 @@ final class DecodingTests: XCTestCase {
         """.data(using: .utf8)!
 
         let feature = try JSONDecoder().decode(Feature.self, from: json)
-        XCTAssertEqual(feature.geometry, .point(Point(longitude: 125.6, latitude: 10.1)))
+        XCTAssertEqual(feature.geometry, .point(Point(longitude: 125.6, latitude: 10.1, altitude: 0.0)))
         XCTAssertEqual(feature.properties?["name"], "Dinagat Islands")
         XCTAssertEqual(feature.properties?.name, "Dinagat Islands")
 
