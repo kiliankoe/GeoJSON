@@ -36,7 +36,7 @@ public struct Feature: Equatable, Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        geometry = try container.decode(Geometry.self, forKey: .geometry)
+        geometry = try container.decodeIfPresent(Geometry.self, forKey: .geometry)
         if let id = try? container.decodeIfPresent(String.self, forKey: .id) {
             self.id = id
         } else if let id = try container.decodeIfPresent(Double.self, forKey: .id) {
