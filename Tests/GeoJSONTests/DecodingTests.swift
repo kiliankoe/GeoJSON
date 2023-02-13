@@ -22,6 +22,19 @@ final class DecodingTests: XCTestCase {
         let illegalBbox = "[10.0, 10.0, 10.0]".data(using: .utf8)!
         XCTAssertThrowsError(try JSONDecoder().decode(BoundingBox.self, from: illegalBbox))
     }
+    
+    func testDencodeEmptyFeature() throws {
+        let json = """
+        {
+          "geometry" : null,
+          "properties" : null,
+          "type" : "Feature"
+        }
+        """.data(using: .utf8)!
+        
+        let feature = try JSONDecoder().decode(Feature.self, from: json)
+        XCTAssertEqual(feature, .init(geometry: nil))
+    }
 
     func testDecodeHomepageExample() throws {
         let json = """
