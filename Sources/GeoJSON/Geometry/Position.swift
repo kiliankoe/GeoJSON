@@ -21,7 +21,7 @@ public struct Position: Equatable, Codable {
 
     public init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
-        guard container.count == 2 || container.count == 3 else {
+        guard (container.count ?? 0) >= 2 else {
             throw Error.unexpectedValueCount
         }
         self.longitude = try container.decode(Double.self)
