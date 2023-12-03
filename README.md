@@ -52,3 +52,28 @@ case .featureCollection(let featureCollection):
 ## Installation
 
 This package is available via Swift Package Manager, add its clone URL to your project to get started.
+
+## Documentation
+
+Documentation of this package is provided via a [DocC](https://www.swift.org/documentation/docc/) documentation catalog.
+
+The official specification of [RFC 7946](https://tools.ietf.org/html/rfc7946) is the best source of documentation about GeoJSON itself.
+
+### Building the documentation
+
+To build the documentation from the command-line:
+
+```
+$ swift package generate-documentation
+```
+
+Add the `--help` flag to get a list of all supported arguments and options.
+
+### Xcode
+
+You can also build the documentation directly in [Xcode](https://developer.apple.com/xcode/) from the Product menu:
+
+**Product > Build Documentation**
+
+The documentation can then be viewed in the documentation viewer.
+

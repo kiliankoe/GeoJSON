@@ -1,5 +1,8 @@
-/// Information on the coordinate range for other GeoJSON objects. Contains two `Position`s which denote the most southwesterly and most northeasterly
+/// Information on the coordinate range for other GeoJSON objects. 
+///
+/// Contains two ``Position`` elements which denote the most southwesterly and most northeasterly
 /// points of the object's geometry.
+///
 /// See [RFC9746 Section 5](https://tools.ietf.org/html/rfc7946#section-5) for more information.
 public struct BoundingBox: Equatable, Codable {
     public var southWesterly: Position
@@ -56,7 +59,9 @@ public struct BoundingBox: Equatable, Codable {
 
 // See [RFC7946 Section 5.3](https://tools.ietf.org/html/rfc7946#section-4).
 extension BoundingBox {
-    /// A bounding box that contains the North Pole. Viewed on a globe, this bounding box approximates a spherical cap bounded by the minimum latitude circle.
+    /// A bounding box that contains the North Pole. 
+    ///
+    /// Viewed on a globe, this bounding box approximates a spherical cap bounded by the minimum latitude circle.
     public static func containsNorthPole(minimumLatitude: Double) -> BoundingBox {
         BoundingBox(southWesterly: .init(longitude: -180.0, latitude: minimumLatitude),
                     northEasterly: .init(longitude: 180.0, latitude: 90.0))

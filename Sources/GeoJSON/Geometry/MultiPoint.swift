@@ -1,4 +1,4 @@
-/// Several `Position`s.
+/// Several ``Position`` elements.
 public struct MultiPoint: Equatable, Codable {
     public var coordinates: [Position]
 

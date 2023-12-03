@@ -1,12 +1,12 @@
 import AnyCodable
 
-/// A `Feature` represents a spatially bounded "thing" which is represented by its geometry (or missing it if it is unlocated).
+/// A ``Feature`` represents a spatially bounded "thing" which is represented by its geometry (or missing it if it is unlocated).
 public struct Feature: Equatable, Codable {
     let type = "Feature"
     public var geometry: Geometry?
     /// A commonly used identifier, if known.
-    /// - Warning: While IDs can be numbers according to the [specification](https://tools.ietf.org/html/rfc7946#section-3.2), they are always decoded as
-    ///            `String`s if present.
+    /// - Warning: While IDs can be numbers according to the [specification](https://tools.ietf.org/html/rfc7946#section-3.2), 
+    /// they are always decoded as `String`s if present.
     public var id: String?
     public var properties: Properties?
     public var boundingBox: BoundingBox?
@@ -21,9 +21,9 @@ public struct Feature: Equatable, Codable {
     }
 
     /// - Parameters:
-    ///   - geometry: A `Geometry` object or `nil` if the `Feature` is unlocated.
-    ///   - id: If a `Feature` has a commonly used identifier, this should be included.
-    ///   - properties: Any additional properties that should be included with the `Feature`.
+    ///   - geometry: A ``Geometry`` object or `nil` if the ``Feature`` is unlocated.
+    ///   - id: If a ``Feature`` has a commonly used identifier, this should be included.
+    ///   - properties: Any additional properties that should be included with the ``Feature``.
     public init(geometry: Geometry?,
                 id: String? = nil,
                 properties: [String: AnyCodable]? = nil,

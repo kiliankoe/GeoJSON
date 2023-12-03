@@ -1,15 +1,18 @@
 /// A fundamental geometry construct containing the coordinates of a geographic position and an optional altitude.
+///
 /// See [RFC9746 Section 3.1.1](https://tools.ietf.org/html/rfc7946#section-3.1.1) and
 /// [Section 4](https://tools.ietf.org/html/rfc7946#section-4) for more information.
 public struct Position: Equatable, Codable {
     public var longitude: Double
     public var latitude: Double
-    /// Altitude or elevation in meters above or below the WGS 84 reference ellipsoid. If not set, this `Position` will be interpreted as being at local ground or
+    /// Altitude or elevation in meters above or below the WGS 84 reference ellipsoid. 
+    ///
+    /// If not set, this ``Position`` will be interpreted as being at local ground or
     /// sea level.
     public var altitude: Double?
 
     public enum Error: Swift.Error {
-        /// A `Position` is expected to contain exactly two or three values.
+        /// A ``Position`` is expected to contain exactly two or three values.
         case unexpectedValueCount
     }
 
@@ -59,8 +62,8 @@ extension Position {
 
     public var location: CLLocation {
         if let altitude = altitude {
-            // What should the default values for accuracy and timestamp be here? I only really want to pass the
-            // altitude.
+            // What should the default values for accuracy and timestamp be here? 
+            // I only really want to pass the altitude.            
             return CLLocation(coordinate: coordinate,
                               altitude: altitude,
                               horizontalAccuracy: 0,
