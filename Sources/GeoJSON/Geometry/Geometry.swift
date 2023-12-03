@@ -1,19 +1,33 @@
 public enum Geometry: Equatable, Codable {
-    /// A single point, containing only the coordinates of a `Position`.
+    /// A single point, containing only the coordinates of a ``Position``.
     case point(Point)
-    /// Several `Position`s.
+    
+    /// Several ``Position`` elements.
     case multiPoint(MultiPoint)
-    /// A string of two or more `Position`s.
+    
+    /// A string of two or more ``Position`` elements.
     case lineString(LineString)
-    /// A collection of `LineString`s, each containing two or more `Position`s.
+    
+    /// A collection of ``LineString`` elements, each containing two or more ``Position`` elements.
     case multiLineString(MultiLineString)
-    /// A collection of `LinearRing`s. The first ring is expected to be the exterior ring, any others are interior rings. The exterior ring bounds the surface, and the
-    /// interior rings (if present) bound holes within the surface.
+    
+    /// A collection of ``Polygon/LinearRing`` geometries.
+    ///
+    /// The first ring is expected to be the exterior ring, any others are interior rings.
+    ///
+    /// The exterior ring bounds the surface, and the interior rings (if present) bound holes within the surface.
     case polygon(Polygon)
-    /// A collection of `Polygon`s.
+    
+    /// A collection of ``Polygon`` geometries.
     case multiPolygon(MultiPolygon)
-    /// A heterogeneous composition of other `Geometry` objects. For example, a `Geometry` object in the shape of a lowercase roman "i" can be composed
-    /// of one `Point` and one `LineString`. Please try and avoid nested `GeometryCollection`s to maximize interopability.
+    
+    /// A heterogeneous composition of other ``Geometry`` objects.
+    ///
+    /// For example, a ``Geometry`` object in the shape of a lowercase roman "i" can be composed
+    /// of one ``Point`` and one ``LineString``.
+    ///
+    /// - Note: Please try and avoid nested ``GeometryCollection``s to maximize interoperability.
+    ///
     /// See [RFC7946 Section 3.1.8](https://tools.ietf.org/html/rfc7946#section-3.1.8) for more information.
     case geometryCollection(GeometryCollection)
 

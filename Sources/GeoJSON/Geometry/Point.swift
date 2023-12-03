@@ -1,4 +1,4 @@
-/// A single point, containing only the coordinates of a `Position`.
+/// A single point, containing only the coordinates of a ``Position``.
 public struct Point: Equatable, Codable {
     public var coordinates: Position
 

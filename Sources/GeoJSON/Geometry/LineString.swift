@@ -1,9 +1,9 @@
-/// A string of two or more `Position`s.
+/// A string of two or more ``Position`` elements.
 public struct LineString: Equatable, Codable {
     public var coordinates: [Position]
 
     public enum Error: Swift.Error {
-        /// A LineString consists of two or more positions.
+        /// A ``LineString`` must consist of two or more positions.
         case invalidCoordinateCount
     }
 

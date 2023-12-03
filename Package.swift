@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.8
 
 import PackageDescription
 
@@ -17,6 +17,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/flight-school/AnyCodable.git", from: "0.2.3"),
+        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
     ],
     targets: [
         .target(

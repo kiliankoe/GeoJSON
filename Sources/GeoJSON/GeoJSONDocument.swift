@@ -1,4 +1,4 @@
-/// A GeoJSON document consisting of either a `Feature` or a `FeatureCollection`.
+/// A GeoJSON document consisting of either a ``Feature`` or a ``FeatureCollection``.
 public enum GeoJSONDocument: Equatable, Codable {
     case feature(Feature)
     case featureCollection(FeatureCollection)

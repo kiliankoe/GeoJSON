@@ -1,4 +1,4 @@
-/// A collection of `Feature`s.
+/// A collection of ``Feature`` elements.
 public struct FeatureCollection: Equatable, Codable {
     let type = "FeatureCollection"
     public var features: [Feature]

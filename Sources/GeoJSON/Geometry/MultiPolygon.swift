@@ -1,4 +1,4 @@
-/// A collection of `Polygon`s.
+/// A collection of ``Polygon`` geometries.
 public struct MultiPolygon: Equatable, Codable {
     public var coordinates: [Polygon]
 
